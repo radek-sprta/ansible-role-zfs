@@ -1,0 +1,3 @@
+---
+__zfs_packages:
+  - zfsutils-linux

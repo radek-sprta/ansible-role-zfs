@@ -1,0 +1,21 @@
+---
+image: quay.io/ansible/molecule:3.0.8
+services:
+  - docker:dind
+
+stages:
+  - release
+
+before_script:
+  - docker -v
+  - python3 -V
+  - ansible --version
+  - molecule --version
+
+release:galaxy:
+  stage: release
+  script:
+    - ansible-galaxy login --github-token $GITHUB_TOKEN
+    - ansible-galaxy role import $GITLAB_USER_LOGIN $CI_PROJECT_NAME
+  only:
+    - tags

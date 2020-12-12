@@ -1,0 +1,24 @@
+---
+dependencies: []
+
+galaxy_info:
+  role_name: zfs
+  author: Radek Sprta
+  description: Install ZFS, configure zpool and datasets.
+  issue_tracker_url: https://gitlab.com/radek-sprta/ansible-role-zfs/-/issues
+  license: MIT
+  min_ansible_version: 2.4
+
+  platforms:
+    - name: Ubuntu
+      versions:
+        - xenial
+        - bionic
+        - focal
+
+  galaxy_tags:
+    - zfs
+    - zpool
+    - datasets
+    - storage
+    - filesystem

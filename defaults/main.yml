@@ -1,0 +1,25 @@
+---
+# Pool configuration. An example can be seen below.
+zfs_pools: {}
+# zfs_pools:
+#   tank:
+#     devices: []
+#     ashift: 13
+#     compression: zstd
+#     encryption: aes-256-gcm
+#     keylocation: prompt
+#     keyformat: passphrase
+#     passphrase: mysecret
+
+# Dataset configuration. An example can be seen below.
+zfs_datasets: {}
+# zfs_datasets:
+#   tank/media:
+#     mountpoint: /media
+#     records_size: 1M
+#   tank/photos:
+#     mountpoint: /mnt/photos
+#     compression: off
+
+# Packages are based on OS, so you should not need to overwrite them.
+# zfs_packages: []
