@@ -1,4 +1,4 @@
-# Ansible Role: ZFS
+# Ansible Role: ZFS [![Ansible Role](https://img.shields.io/ansible/role/52311)](https://galaxy.ansible.com/radek_sprta/zfs) [![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/radek-sprta/ansible-role-zfs)](https://gitlab.com/radek-sprta/ansible-role-zfs/-/tags) [![Ansible Role](https://img.shields.io/ansible/role/d/52311)](https://galaxy.ansible.com/radek_sprta/zfs) [![Ansible Role](https://img.shields.io/ansible/quality/52311)](https://galaxy.ansible.com/radek_sprta/zfs) [![Pipeline status](https://gitlab.com/radek-sprta/ansible-role-zfs/badges/master/pipeline.svg)](https://gitlab.com/radek-sprta/ansible-role-zfs/commits/master)
 
 Install ZFS, configure zpool and datasets.
 
