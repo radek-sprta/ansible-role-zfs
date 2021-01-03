@@ -1,0 +1,35 @@
+---
+- name: Converge
+  hosts: all
+
+  vars:
+    zfs_pools:
+      tank1:
+        devices:
+          - /tmp/a1
+          - /tmp/a2
+        type: mirror
+      tank2:
+        devices:
+          - /tmp/b1
+        encryption: aes-256-gcm
+        keyformat: passphrase
+        keylocation: prompt
+        passphrase: mysecret
+    zfs_datasets:
+      tank1/test:
+        recordsize: 4M
+      tank2/test:
+        recordsize: 4M
+
+  pre_tasks:
+    - name: Update apt cache.
+      apt:
+        update_cache: true
+        cache_valid_time: 3600
+      when: ansible_os_family == 'Debian'
+
+  tasks:
+    - name: "Include zfs"
+      include_role:
+        name: "ansible-role-zfs"

@@ -1,0 +1,11 @@
+---
+- name: Prepare
+  hosts: all
+
+  tasks:
+    - name: Create vdev files
+      command: dd if=/dev/zero of=/tmp/{{ item }} bs=1M count=128
+      with_items:
+        - a1
+        - a2
+        - b1

@@ -1,0 +1,30 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+lint: |
+  yamllint .
+  ansible-lint
+platforms:
+  - name: Xenial
+    image: docker.io/geerlingguy/docker-ubuntu1604-ansible
+    pre_build_image: true
+  - name: Bionic
+    image: docker.io/geerlingguy/docker-ubuntu1804-ansible
+    command: ''
+    volumes:
+      - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    privileged: true
+    pre_build_image: true
+  - name: Focal
+    image: docker.io/geerlingguy/docker-ubuntu2004-ansible
+    command: ''
+    volumes:
+      - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    privileged: true
+    pre_build_image: true
+provisioner:
+  name: ansible
+verifier:
+  name: ansible

@@ -1,0 +1,22 @@
+---
+- name: Verify
+  hosts: all
+
+  vars:
+    test_pools:
+      - tank1
+      - tank2
+    test_datasets:
+      - tank1/test
+      - tank2/test
+
+  tasks:
+    - name: Gather zpool facts
+      zpool_facts:
+
+    - debug: var=ansible_zpool_facts
+
+    - name: Gather ZFS facts
+      zfs_facts:
+        name: "{{ item }}"
+      with_items: "{{ test_datasets }}"
