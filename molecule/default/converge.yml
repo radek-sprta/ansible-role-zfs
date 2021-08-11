@@ -1,0 +1,11 @@
+---
+- name: Converge
+  hosts: all
+
+  vars_files:
+    - vars.yml
+
+  tasks:
+    - name: "Include ansible-role-zfs"
+      include_role:
+        name: "ansible-role-zfs"

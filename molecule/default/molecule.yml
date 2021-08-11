@@ -1,0 +1,23 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: vagrant
+  provider:
+    name: virtualbox
+    options:
+      memory: 1024
+      cpus: 1
+lint: |
+  yamllint .
+  ansible-lint
+platforms:
+  - name: ubuntu-zfs
+    box: generic/ubuntu2004
+provisioner:
+  name: ansible
+  connection_options:
+    ansible_ssh_user: vagrant
+    ansible_become: true
+verifier:
+  name: ansible

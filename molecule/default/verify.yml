@@ -1,0 +1,34 @@
+---
+- name: Verify
+  hosts: all
+  gather_facts: false
+
+  vars_files:
+    - vars.yml
+
+  tasks:
+    - name: Populate zpool facts
+      zpool_facts:
+        parsable: false
+
+    - name: Assert that all pools exist
+      assert:
+        that: "item.name in zfs_pools"
+      with_items: "{{ ansible_zfs_pools }}"
+      loop_control:
+        label: "{{ item.name }}"
+
+    - name: Populate zfs facts
+      zfs_facts:
+        name: "{{ item }}"
+      with_items: "{{ zfs_datasets | list }}"
+
+    - name: Assert that all datasets exist
+      assert:
+        that:
+          - "item.name in zfs_datasets"
+          - "item.mountpoint == zfs_datasets[item.name].mountpoint"
+          - "item.recordsize == zfs_datasets[item.name].recordsize"
+      with_items: "{{ ansible_zfs_datasets }}"
+      loop_control:
+        label: "{{ item.name }}"

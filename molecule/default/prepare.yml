@@ -1,0 +1,19 @@
+---
+- name: Prepare
+  hosts: all
+
+  vars_files:
+    - vars.yml
+
+  tasks:
+    - name: "Install ZFS"
+      apt:
+        name: "zfsutils-linux"
+        state: present
+        update_cache: true
+
+    - name: "Create disk files"
+      command: dd if=/dev/zero of={{ item }} bs=1M count=256
+      args:
+        creates: "{{ item }}"
+      with_items: "{{ zfs_pools.tank.devices }}"

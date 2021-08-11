@@ -1,0 +1,11 @@
+---
+zfs_pools:
+  tank:
+    devices:
+      - /tmp/disk1
+      - /tmp/disk2
+
+zfs_datasets:
+  tank/test:
+    mountpoint: /test
+    recordsize: 1M
