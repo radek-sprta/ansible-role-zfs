@@ -10,7 +10,7 @@ driver:
       cpus: 1
 lint: |
   yamllint .
-  ansible-lint
+  ansible-lint --exclude molecule/default/vars.yml
 platforms:
   - name: ubuntu-zfs
     box: generic/ubuntu2004
