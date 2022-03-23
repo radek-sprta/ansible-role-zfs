@@ -1,9 +1,9 @@
 ---
 - name: Create ZFS datasets
   zfs:
-    name: "{{ item.key }}"
+    name: "{{ item.name }}"
     state: present
-    extra_zfs_properties: "{{ item.value }}"
-  with_dict: "{{ zfs_datasets }}"
+    extra_zfs_properties: "{{ item | remove_key('name') }}"
+  with_items: "{{ zfs_datasets }}"
   loop_control:
-    label: "{{ item.key }}"
+    label: "{{ item.name }}"

@@ -9,26 +9,26 @@
 - name: Create zpool
   shell: >-
     set -o pipefail;
-    echo "{{ item.value.passphrase | default('') }}" |
-    zpool create -f -o ashift={{ item.value.ashift | default(12) }}
-    -O acltype={{ item.value.acltype | default('posixacl') }}
+    echo "{{ item.passphrase | default('') }}" |
+    zpool create -f -o ashift={{ item.ashift | default(12) }}
+    -O acltype={{ item.acltype | default('posixacl') }}
     -O canmount=off
-    -O compression={{ item.value.compression | default('lz4') }}
-    -O dnodesize={{ item.value.dnodesize | default('auto') }}
-    -O normalization={{ item.value.normalization | default('formD') }}
-    -O relatime={{ item.value.relatime | default('on') }}
-    -O xattr={{ item.value.xattr | default('sa') }}
-    {% if item.value.passphrase is defined %}
-    -O encryption={{ item.value.encryption | default('aes-256-gcm') }}
-    -O keylocation={{ item.value.keylocation | default('prompt') }}
-    -O keyformat={{ item.value.keyformat | default('passphrase') }}
+    -O compression={{ item.compression | default('lz4') }}
+    -O dnodesize={{ item.dnodesize | default('auto') }}
+    -O normalization={{ item.normalization | default('formD') }}
+    -O relatime={{ item.relatime | default('on') }}
+    -O xattr={{ item.xattr | default('sa') }}
+    {% if item.passphrase is defined %}
+    -O encryption={{ item.encryption | default('aes-256-gcm') }}
+    -O keylocation={{ item.keylocation | default('prompt') }}
+    -O keyformat={{ item.keyformat | default('passphrase') }}
     {% endif %}
-    {{ item.key }}
-    {{ item.value.type | default('') }}
-    {% for device in item.value.devices %} {{ device }} {% endfor %}
+    {{ item.name }}
+    {{ item.type | default('') }}
+    {% for device in item.devices %} {{ device }} {% endfor %}
   args:
     executable: /bin/bash
-  when: item.key not in existing_pools.stdout
-  with_dict: "{{ zfs_pools }}"
+  when: item.name not in existing_pools.stdout
+  with_items: "{{ zfs_pools }}"
   loop_control:
-    label: "{{ item.key }}"
+    label: "{{ item.name }}"

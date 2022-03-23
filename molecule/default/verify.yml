@@ -11,9 +11,10 @@
       zpool_facts:
         parsable: false
 
+
     - name: Assert that all pools exist
       assert:
-        that: "item.name in zfs_pools"
+        that: "item.name in (zfs_pools | map(attribute='name'))"
       with_items: "{{ ansible_zfs_pools }}"
       loop_control:
         label: "{{ item.name }}"
@@ -21,14 +22,14 @@
     - name: Populate zfs facts
       zfs_facts:
         name: "{{ item }}"
-      with_items: "{{ zfs_datasets | list }}"
+      with_items: "{{ zfs_datasets | map(attribute='name') }}"
 
     - name: Assert that all datasets exist
       assert:
         that:
-          - "item.name in zfs_datasets"
-          - "item.mountpoint == zfs_datasets[item.name].mountpoint"
-          - "item.recordsize == zfs_datasets[item.name].recordsize"
+          - "item.name in (zfs_datasets | map(attribute='name'))"
+          - "item.mountpoint == zfs_datasets[0].mountpoint"
+          - "item.recordsize == zfs_datasets[0].recordsize"
       with_items: "{{ ansible_zfs_datasets }}"
       loop_control:
         label: "{{ item.name }}"

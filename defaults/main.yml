@@ -2,7 +2,7 @@
 # Pool configuration. An example can be seen below.
 zfs_pools: {}
 # zfs_pools:
-#   tank:
+#   - name: tank
 #     devices: []
 #     ashift: 13
 #     compression: zstd
@@ -14,10 +14,10 @@ zfs_pools: {}
 # Dataset configuration. An example can be seen below.
 zfs_datasets: {}
 # zfs_datasets:
-#   tank/media:
+#   - name: tank/media
 #     mountpoint: /media
 #     records_size: 1M
-#   tank/photos:
+#   - name: tank/photos
 #     mountpoint: /mnt/photos
 #     compression: off
 

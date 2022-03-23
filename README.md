@@ -11,7 +11,7 @@ List of variables from `defaults/main.yml`.
 ZFS pools to define. Example configration of an encrypted pool might look like this:
 
     zfs_pools:
-      tank:
+      - name: tank
         devices: []
         ashift: 13
         compression: zstd
@@ -27,10 +27,10 @@ ZFS datasets are defined in the following:
 All parameters are passed as extra options, so an example dataset configuration might look like this:
 
     zfs_datasets:
-      tank/media:
+      - name: tank/media
         mountpoint: /media
         records_size: 1M
-      tank/photos:
+      - name: tank/photos
         mountpoint: /mnt/photos
         compression: off
 
@@ -41,7 +41,7 @@ All parameters are passed as extra options, so an example dataset configuration 
 
   vars:
     zfs_pools:
-      tank:
+      - name: tank
         devices: []
         ashift: 13
         compression: zstd
@@ -50,10 +50,10 @@ All parameters are passed as extra options, so an example dataset configuration 
         keyformat: passphrase
         passphrase: mysecret
     zfs_datasets:
-      tank/media:
+      - name: tank/media
         mountpoint: /media
         records_size: 1M
-      tank/photos:
+      - name: tank/photos
         mountpoint: /mnt/photos
         compression: off
     

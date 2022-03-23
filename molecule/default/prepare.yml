@@ -16,4 +16,4 @@
       command: dd if=/dev/zero of={{ item }} bs=1M count=256
       args:
         creates: "{{ item }}"
-      with_items: "{{ zfs_pools.tank.devices }}"
+      with_items: "{{ zfs_pools[0].devices }}"
