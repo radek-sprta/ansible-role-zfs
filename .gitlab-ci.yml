@@ -4,6 +4,7 @@ services:
   - docker:dind
 
 stages:
+  - lint
   - release
 
 before_script:
@@ -11,6 +12,16 @@ before_script:
   - python3 -V
   - ansible --version
   - molecule --version
+
+lint:yamllint:
+  stage: lint
+  script:
+    - yamllint .
+
+lint:ansible-lint:
+  stage: lint
+  script:
+    - ansible-lint --exclude molecule/default/vars.yml
 
 release:galaxy:
   stage: release
