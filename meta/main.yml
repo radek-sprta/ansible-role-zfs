@@ -8,14 +8,14 @@ galaxy_info:
   description: Install ZFS, configure zpool and datasets.
   issue_tracker_url: https://gitlab.com/radek-sprta/ansible-role-zfs/-/issues
   license: MIT
-  min_ansible_version: 2.4
+  min_ansible_version: "2.10"
 
   platforms:
     - name: Ubuntu
       versions:
-        - xenial
         - bionic
         - focal
+        - jammy
 
   galaxy_tags:
     - zfs
