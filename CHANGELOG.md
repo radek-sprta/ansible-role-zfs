@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+### Removed
+
+- Support for Ansible 2.9 and lower.
+
 ### Changed
 
 - Change pool and dataset definition format from dictionary to list of

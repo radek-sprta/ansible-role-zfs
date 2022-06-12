@@ -7,13 +7,13 @@
 
   tasks:
     - name: "Install ZFS"
-      apt:
+      ansible.builtin.apt:
         name: "zfsutils-linux"
         state: present
         update_cache: true
 
     - name: "Create disk files"
-      command: dd if=/dev/zero of={{ item }} bs=1M count=256
+      ansible.builtin.command: dd if=/dev/zero of={{ item }} bs=1M count=256
       args:
         creates: "{{ item }}"
       with_items: "{{ zfs_pools[0].devices }}"

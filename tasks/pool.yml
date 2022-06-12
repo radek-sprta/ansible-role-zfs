@@ -1,13 +1,13 @@
 ---
 - name: Check if pool exists
-  shell: set -o pipefail; zpool list -H | cut -s -f1
+  ansible.builtin.shell: set -o pipefail; zpool list -H | cut -s -f1
   args:
     executable: /bin/bash
   changed_when: false
   register: existing_pools
 
 - name: Create zpool
-  shell: >-
+  ansible.builtin.shell: >-
     set -o pipefail;
     echo "{{ item.passphrase | default('') }}" |
     zpool create -f -o ashift={{ item.ashift | default(12) }}

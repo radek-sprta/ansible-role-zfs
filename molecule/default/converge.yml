@@ -7,5 +7,5 @@
 
   tasks:
     - name: "Include ansible-role-zfs"
-      include_role:
+      ansible.builtin.include_role:
         name: "radek_sprta.zfs"

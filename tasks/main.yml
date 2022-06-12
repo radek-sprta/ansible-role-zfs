@@ -1,15 +1,15 @@
 ---
 - name: Include system-specific vars
-  include_vars: "{{ ansible_os_family }}.yml"
+  ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
 
 - name: Set ZFS package variable
-  set_fact:
+  ansible.builtin.set_fact:
     zfs_packages: "{{ __zfs_packages }}"
   when: zfs_packages is undefined
 
-- include_tasks: "setup-{{ ansible_os_family }}.yml"
+- ansible.builtin.include_tasks: "setup-{{ ansible_os_family }}.yml"
 
-- include_tasks: "pool.yml"
+- ansible.builtin.include_tasks: "pool.yml"
   when: zfs_pools | length > 0
 
-- import_tasks: "datasets.yml"
+- ansible.builtin.import_tasks: "datasets.yml"

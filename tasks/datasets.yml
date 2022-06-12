@@ -1,6 +1,6 @@
 ---
 - name: Create ZFS datasets
-  zfs:
+  community.general.zfs:
     name: "{{ item.name }}"
     state: present
     extra_zfs_properties: "{{ item | remove_key('name') }}"

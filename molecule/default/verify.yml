@@ -8,24 +8,23 @@
 
   tasks:
     - name: Populate zpool facts
-      zpool_facts:
+      community.general.zpool_facts:
         parsable: false
 
-
     - name: Assert that all pools exist
-      assert:
+      ansible.builtin.assert:
         that: "item.name in (zfs_pools | map(attribute='name'))"
       with_items: "{{ ansible_zfs_pools }}"
       loop_control:
         label: "{{ item.name }}"
 
     - name: Populate zfs facts
-      zfs_facts:
+      community.general.zfs_facts:
         name: "{{ item }}"
       with_items: "{{ zfs_datasets | map(attribute='name') }}"
 
     - name: Assert that all datasets exist
-      assert:
+      ansible.builtin.assert:
         that:
           - "item.name in (zfs_datasets | map(attribute='name'))"
           - "item.mountpoint == zfs_datasets[0].mountpoint"
