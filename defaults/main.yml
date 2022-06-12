@@ -1,6 +1,6 @@
 ---
 # Pool configuration. An example can be seen below.
-zfs_pools: {}
+zfs_pools: []
 # zfs_pools:
 #   - name: tank
 #     devices: []
@@ -12,7 +12,7 @@ zfs_pools: {}
 #     passphrase: mysecret
 
 # Dataset configuration. An example can be seen below.
-zfs_datasets: {}
+zfs_datasets: []
 # zfs_datasets:
 #   - name: tank/media
 #     mountpoint: /media

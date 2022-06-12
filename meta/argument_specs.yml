@@ -1,0 +1,15 @@
+---
+argument_specs:
+  main:
+    short_description: The main entrypoint for the role.
+    options:
+      zfs_pools:
+        type: list
+        required: false
+        default: []
+        description: List of dictionaries defining ZFS pools.
+      zfs_datasets:
+        type: list
+        required: false
+        default: []
+        description: List of dictionaries defining ZFS datasets.
