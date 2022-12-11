@@ -7,9 +7,12 @@
     zfs_packages: "{{ __zfs_packages }}"
   when: zfs_packages is undefined
 
-- ansible.builtin.include_tasks: "setup-{{ ansible_os_family }}.yml"
+- name: Install OS packages
+  ansible.builtin.include_tasks: "setup-{{ ansible_os_family }}.yml"
 
-- ansible.builtin.include_tasks: "pool.yml"
+- name: Configure pool
+  ansible.builtin.include_tasks: "pool.yml"
   when: zfs_pools | length > 0
 
-- ansible.builtin.import_tasks: "datasets.yml"
+- name: Configure datasets
+  ansible.builtin.import_tasks: "datasets.yml"
