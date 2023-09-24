@@ -28,6 +28,7 @@
     {% for device in item.devices %} {{ device }} {% endfor %}
   args:
     executable: /bin/bash
+  changed_when: true
   when: item.name not in existing_pools.stdout
   with_items: "{{ zfs_pools }}"
   loop_control:
